@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bngm245phd0ga"]
+
+[ext_resource type="Texture2D" uid="uid://hqw8twjgmoqh" path="res://assets/Sprout Lands - Sprites - Basic pack/Sprout Lands - Sprites - Basic pack/objects/Basic Grass Biom things 1.png" id="1_a8qts"]
+[ext_resource type="Shader" uid="uid://xr00yn83eyql" path="res://scenes/objects/shake.gdshader" id="1_w057i"]
+[ext_resource type="Script" uid="uid://kes62hhpeahn" path="res://scenes/objects/trees/small_tree.gd" id="2_g5iuu"]
+[ext_resource type="PackedScene" uid="uid://bserlp64rl52u" path="res://scenes/components/hurt_component.tscn" id="2_xyb6m"]
+[ext_resource type="PackedScene" uid="uid://cviudbxy7612e" path="res://scenes/components/damage_component.tscn" id="3_au4vd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_skbjc"]
+resource_local_to_scene = true
+shader = ExtResource("1_w057i")
+shader_parameter/shake_intensity = 0.0
+shader_parameter/shake_speed = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a8qts"]
+radius = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyb6m"]
+size = Vector2(10, 20)
+
+[node name="SmallTree" type="Sprite2D" unique_id=392068672]
+material = SubResource("ShaderMaterial_skbjc")
+position = Vector2(0, -10)
+texture = ExtResource("1_a8qts")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 32)
+script = ExtResource("2_g5iuu")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=508182639]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=361120744]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_a8qts")
+
+[node name="HurtComponent" parent="." unique_id=697662218 instance=ExtResource("2_xyb6m")]
+tool = 1
+
+[node name="HurtComponentCollisionShape" type="CollisionShape2D" parent="HurtComponent" unique_id=1021823559]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_xyb6m")
+debug_color = Color(0.99999994, 0, 0.10464307, 0.41960785)
+
+[node name="DamageComponent" parent="." unique_id=693108553 instance=ExtResource("3_au4vd")]

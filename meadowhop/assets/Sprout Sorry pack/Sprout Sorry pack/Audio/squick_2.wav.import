@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bpjlodb0oq50b"
+path="res://.godot/imported/squick_2.wav-19ce1c4b42a36522ca2f90eb474b85e3.sample"
+
+[deps]
+
+source_file="res://assets/Sprout Sorry pack/Sprout Sorry pack/Audio/squick_2.wav"
+dest_files=["res://.godot/imported/squick_2.wav-19ce1c4b42a36522ca2f90eb474b85e3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

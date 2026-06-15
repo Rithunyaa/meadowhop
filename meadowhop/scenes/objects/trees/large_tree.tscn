@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cl4wji1bebqrf"]
+
+[ext_resource type="Texture2D" uid="uid://hqw8twjgmoqh" path="res://assets/Sprout Lands - Sprites - Basic pack/Sprout Lands - Sprites - Basic pack/objects/Basic Grass Biom things 1.png" id="1_lwbpo"]
+[ext_resource type="Script" uid="uid://ctwde2yonutwk" path="res://scenes/objects/trees/large_tree.gd" id="2_sx6ol"]
+[ext_resource type="PackedScene" uid="uid://bserlp64rl52u" path="res://scenes/components/hurt_component.tscn" id="3_wjqkr"]
+[ext_resource type="PackedScene" uid="uid://cviudbxy7612e" path="res://scenes/components/damage_component.tscn" id="4_f4wgc"]
+[ext_resource type="Shader" uid="uid://xr00yn83eyql" path="res://scenes/objects/shake.gdshader" id="5_f4wgc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f4wgc"]
+resource_local_to_scene = true
+shader = ExtResource("5_f4wgc")
+shader_parameter/shake_intensity = 0.0
+shader_parameter/shake_speed = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sx6ol"]
+atlas = ExtResource("1_lwbpo")
+region = Rect2(16, 0, 32, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6vpey"]
+radius = 6.0207973
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ia52"]
+size = Vector2(10, 22)
+
+[node name="LargeTree" type="Sprite2D" unique_id=82489924]
+material = SubResource("ShaderMaterial_f4wgc")
+position = Vector2(0, -12)
+texture = SubResource("AtlasTexture_sx6ol")
+script = ExtResource("2_sx6ol")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1448707256]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1397588545]
+position = Vector2(0, 9)
+shape = SubResource("CircleShape2D_6vpey")
+
+[node name="HurtComponent" parent="." unique_id=697662218 instance=ExtResource("3_wjqkr")]
+
+[node name="HurtComponentCollision" type="CollisionShape2D" parent="HurtComponent" unique_id=967029002]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_0ia52")
+debug_color = Color(0.9958634, 0, 0.20587239, 0.41960785)
+
+[node name="DamageComponent" parent="." unique_id=693108553 instance=ExtResource("4_f4wgc")]
+max_damage = 3

@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://btj8ubt5n3708"]
+
+[ext_resource type="Texture2D" uid="uid://hqw8twjgmoqh" path="res://assets/Sprout Lands - Sprites - Basic pack/Sprout Lands - Sprites - Basic pack/objects/Basic Grass Biom things 1.png" id="1_70ahf"]
+[ext_resource type="PackedScene" uid="uid://bserlp64rl52u" path="res://scenes/components/hurt_component.tscn" id="2_aw33s"]
+[ext_resource type="Script" uid="uid://br0bskgpa5el3" path="res://scenes/objects/rocks/rock.gd" id="2_f5itc"]
+[ext_resource type="PackedScene" uid="uid://cviudbxy7612e" path="res://scenes/components/damage_component.tscn" id="3_msy0l"]
+[ext_resource type="Shader" uid="uid://xr00yn83eyql" path="res://scenes/objects/shake.gdshader" id="4_bntui"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bntui"]
+resource_local_to_scene = true
+shader = ExtResource("4_bntui")
+shader_parameter/shake_intensity = 0.0
+shader_parameter/shake_speed = 20.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw33s"]
+atlas = ExtResource("1_70ahf")
+region = Rect2(128, 18, 16, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_msy0l"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f5itc"]
+radius = 7.0
+
+[node name="Rock" type="Sprite2D" unique_id=772160087]
+material = SubResource("ShaderMaterial_bntui")
+position = Vector2(0, -5)
+texture = SubResource("AtlasTexture_aw33s")
+script = ExtResource("2_f5itc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=17261332]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1742012205]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_msy0l")
+
+[node name="HurtComponent" parent="." unique_id=697662218 instance=ExtResource("2_aw33s")]
+tool = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtComponent" unique_id=1170237726]
+shape = SubResource("CircleShape2D_f5itc")
+debug_color = Color(0.99468416, 0, 0.22553337, 0.41960785)
+
+[node name="DamageComponent" parent="." unique_id=693108553 instance=ExtResource("3_msy0l")]
